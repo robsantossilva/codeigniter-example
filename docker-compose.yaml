@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  # apache:
+  #   build:
+  #     context: ./.docker/php
+  #   #container_name: apache
+  #   #restart: always
+  #   ports:
+  #     - '80:80'
+  #   volumes:
+  #     - ./:/var/www/html
+  #   depends_on:
+  #     - mysql
+  #   networks:
+  #     - net_codeigniter
+
+  mysql: 
+    build: ./.docker/mysql
+    #command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql:rw
+      - ./.docker/mysql/sql:/tmp/sql:rw
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - net_codeigniter
+
+networks:
+  net_codeigniter:
+    driver: bridge

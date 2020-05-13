@@ -1,0 +1,1 @@
+https://codeigniter.com/userguide3/tutorial/static_pages.html
